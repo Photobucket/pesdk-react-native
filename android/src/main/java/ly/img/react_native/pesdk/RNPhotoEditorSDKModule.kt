@@ -149,7 +149,7 @@ class RNPhotoEditorSDKModule(val reactContext: ReactApplicationContext) : ReactC
     fun present(image: String?, config: ReadableMap?, serialization: String?, promise: Promise) {
         IMGLY.authorize()
 
-        val configuration = ConfigLoader.readFrom(config?.toHashMap() ?: mapOf())
+        val configuration = ConfigLoader.readFrom((config?.toHashMap() ?: mapOf()) as Map<String, Any>)
         val settingsList = PhotoEditorSettingsList(configuration.export?.serialization?.enabled == true)
         configuration.applyOn(settingsList)
         currentConfig = configuration
